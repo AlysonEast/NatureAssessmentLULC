@@ -3,12 +3,26 @@ library(networkD3)
 library(dplyr)
 library(ggplot2)
 library(ggpubr)
+library(tidyverse)
 
 setwd("/media/aly/Penobscot/UNB") 
 
-NLCD_Changed_01_21_flow<-read.csv("./LCMAPChanged_1985to2021_reportFormated.csv", header = TRUE, sep = "")
+df <- read.delim("LCMAPChanged_1985to2021_report.tsv", sep = "\t")   # treat blanks as NA
+
+clean_df <- df[df[,3] != "", ]
+colnames(clean_df)<-c("LC_1985","LC_2022","sqMi")
+clean_df$LC_1985<-c(rep(1:5, each=8),rep(6:7, each=7),rep(8, each=8))
+table(clean_df$LC_1985,clean_df$LC_2022) #Should only see 1s or 0s. 
+
+write.csv(clean_df, "LCMAPChanged_1985to2021_reportFormated.csv", row.names = FALSE)
+
+
+NLCD_Changed_01_21_flow<-read.csv("./LCMAPChanged_1985to2021_reportFormated.csv", header = TRUE, sep = ",")
 head(NLCD_Changed_01_21_flow)
-table(NLCD_Changed_01_21_flow$kms)
+NLCD_Changed_01_21_flow$sqMi <- gsub("\\,", "", NLCD_Changed_01_21_flow$sqMi)
+NLCD_Changed_01_21_flow$sqMi<-as.numeric(NLCD_Changed_01_21_flow$sqMi)
+table(NLCD_Changed_01_21_flow$sqMi)
+NLCD_Changed_01_21_flow$sqMi
 
 NLCD_Changed_01_21_flow<-subset(NLCD_Changed_01_21_flow, LC_2022!=7)
 NLCD_Changed_01_21_flow<-subset(NLCD_Changed_01_21_flow, LC_1985!=7)
@@ -84,3 +98,11 @@ sankeyNetwork(Links = links, Nodes = nodes,
               sinksRight=FALSE,
               fontSize = 12, nodeWidth = 75, iterations = 100)
 dev.off()
+
+#Summary Values
+subset(NLCD_Changed_01_21_flow, LC_2022=="Developed")
+sum(subset(NLCD_Changed_01_21_flow, LC_2022=="Developed")[-c(1,2),3])
+
+
+subset(NLCD_Changed_01_21_flow, LC_2022=="Cropland")
+sum(subset(NLCD_Changed_01_21_flow, LC_2022=="Cropland")[-c(1,2),3])
