@@ -1,7 +1,9 @@
 #!/bin/bash                                                                     
 READDATA=0
 RECLASS=0
-REPORTS=1
+REPORTS=0
+READDATA_HI=1
+REPORTS_HI=1
 
 export GISRC=/home/aly/.grassrc8.data
 
@@ -32,3 +34,22 @@ then
 	awk 'BEGIN { FS="|"; } {print $2"	"$3"	"$5}' LCMAPChanged_1985to2021_report >LCMAPChanged_1985to2021_report.tsv
 
 fi
+
+
+if [ $READDATA_HI -eq 1 ]
+then
+	r.mask -r
+	r.in.gdal input=../NLCD/LCMAP/LCMAP_HI_2000_V10_LCPRI.tif output=LCMAP_HI_2000_V10_LCPRI -o
+	r.in.gdal input=../NLCD/LCMAP/LCMAP_HI_2020_V10_LCPRI.tif output=LCMAP_HI_2020_V10_LCPRI -o
+
+fi
+
+
+if [ $REPORTS_HI -eq 1 ]
+then
+	r.mask -r
+	r.report map=LCMAP_HI_2000_V10_LCPRI,LCMAP_HI_2020_V10_LCPRI -h -n -a units=miles output=LCMAP_HI_2000to2020_report --overwrite
+	awk 'BEGIN { FS="|"; } {print $2"	"$3"	"$5}' LCMAP_HI_2000to2020_report >LCMAP_HI_2000to2020_report.tsv
+
+fi
+
