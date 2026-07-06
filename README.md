@@ -1,6 +1,6 @@
 # NatureAssessmentLULC
 
-Land-use / land-cover (LULC) change analysis pipeline for the United by Nature conservation initiative. This project processes national land-cover raster datasets to quantify how land cover in the U.S. (including Hawaii) has shifted over time — tracking transitions like forest loss, cropland expansion, and urban development.
+Land-use / land-cover (LULC) change analysis pipeline supporting the National Assessment by the Nature Record. This project processes national land-cover raster datasets to quantify how land cover in the U.S. (including Hawaii) has shifted over time — tracking transitions like forest loss, cropland expansion, and urban development.
 
 ## What it does
 
@@ -18,6 +18,7 @@ The pipeline runs in two stages:
 | `NLCD.sh` / `NLCD.R` | [NLCD](https://www.mrlc.gov/data) (National Land Cover Database) | CONUS | 2001–2021 |
 | `LCMAP.sh` / `LCMAP.R` | [LCMAP](https://www.usgs.gov/special-topics/lcmap) (Land Change Monitoring, Assessment, and Projection) | CONUS | 1985–2021 |
 | `LCMAP.sh` / `LCMAP_HI.R` | LCMAP | Hawaii | 2000–2020 |
+| `hindcaseLULC.sh` / `hindcastLULC.R` | [HISLAND-US](https://doi.org/10.5281/zenodo.7055086) (Li et al., 2023) | CONUS | 1650–2020 |
 
 ## Repository contents
 
@@ -28,6 +29,8 @@ NatureAssessmentLULC/
 ├── LCMAP.sh                              # GRASS GIS: import + reclass LCMAP rasters (CONUS + HI), generate reports
 ├── LCMAP.R                               # R: visualize LCMAP CONUS change (Sankey diagram)
 ├── LCMAP_HI.R                            # R: visualize LCMAP Hawaii change (Sankey diagram)
+├── hindcaseLULC.sh                       # GRASS GIS: import HISLAND-US rasters, generate 1650–2020 change report
+├── hindcastLULC.R                        # R: visualize 1650–2020 land cover change (Sankey diagram)
 ├── NLCD_Date_ChangeIndex_report.tsv      # Raw GRASS r.report output: NLCD change by date/index
 ├── LCMAP_1985to2021_report.tsv           # Raw GRASS r.report output: LCMAP land cover 1985 vs 2021
 ├── LCMAPChanged_1985to2021_report.tsv    # Raw GRASS r.report output: LCMAP change areas 1985–2021
@@ -46,8 +49,11 @@ This project uses publicly available land-cover data from:
 
 - **NLCD (National Land Cover Database)** — U.S. Geological Survey and Multi-Resolution Land Characteristics (MRLC) Consortium. https://www.mrlc.gov/data
 - **LCMAP (Land Change Monitoring, Assessment, and Projection)** — U.S. Geological Survey. https://www.usgs.gov/special-topics/lcmap
+- **HISLAND-US (HIStory of LAND changes, 1630–2020)** — Annual, 1 km resolution reconstructed land-cover data for the CONUS, used in `hindcaseLULC.sh` / `hindcastLULC.R`:
+  - Data: Li, X., Tian, H., Lu, C., and Pan, S. (2022). *HISLAND-US dataset* [Data set]. Zenodo. https://doi.org/10.5281/zenodo.7055086
+  - Publication: Li, X., Tian, H., Lu, C., and Pan, S. (2023). Four-century history of land transformation by humans in the United States (1630–2020): annual and 1 km grid data for the HIStory of LAND changes (HISLAND-US). *Earth System Science Data*, 15, 1005–1035. https://doi.org/10.5194/essd-15-1005-2023
 
-Please consult the USGS/MRLC data usage policies for citation requirements when reusing outputs derived from these datasets.
+Please consult the USGS/MRLC data usage policies, and the CC BY 4.0 license on the HISLAND-US publication, for citation requirements when reusing outputs derived from these datasets.
 
 ## About
 
