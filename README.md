@@ -17,7 +17,7 @@ The pipeline runs in two stages:
 |---|---|---|---|
 | `NLCD.sh` / `NLCD.R` | [NLCD](https://www.mrlc.gov/data) (National Land Cover Database) | CONUS | 2001–2021 |
 | `LCMAP.sh` / `LCMAP.R` | [LCMAP](https://www.usgs.gov/special-topics/lcmap) (Land Change Monitoring, Assessment, and Projection) | CONUS | 1985–2021 |
-| `LCMAP.sh` / `LCMAP_HI.R` | LCMAP | Hawaii | 2000–2020 |
+| `LCMAP.sh` / `LCMAP_HI.R` | [LCMAP](https://www.usgs.gov/special-topics/lcmap/lcmap-hawaii-reference-data) | Hawaii | 2000–2020 |
 | `hindcaseLULC.sh` / `hindcastLULC.R` | [HISLAND-US](https://doi.org/10.5281/zenodo.7055086) (Li et al., 2023) | CONUS | 1650–2020 |
 
 ## Repository contents
