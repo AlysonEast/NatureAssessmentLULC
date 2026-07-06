@@ -51,4 +51,4 @@ Please consult the USGS/MRLC data usage policies for citation requirements when 
 
 ## About
 
-Part of the [United by Nature](https://www.unitedbynature.eco/) initiative, tracking land-cover change across the U.S. to support conservation storytelling and policy.
+Part of the [The National Assessment by the Nature Record](https://naturerecord.org/) initiative for Chapter 8: Status, Trends, and Future Projections of Terrestrial Ecosystems in the US.
