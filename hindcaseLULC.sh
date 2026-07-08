@@ -1,7 +1,7 @@
 #!/bin/bash                                                                     
 READDATA=0
-RECLASS=0
-REPORTS=1
+RECLASS=1
+REPORTS=0
 
 export GISRC=/home/aly/.grassrc8.data
 
@@ -19,7 +19,8 @@ fi
 
 if [ $RECLASS -eq 1 ]
 then
-	r.reclass input=LCMAP_CU_2021_V13_SCLAST output=LCMAP_Changed_1985_2021 rules=../NLCD/LCMAP/Dist_Reclass.txt
+	r.reclass input=conus_lulc_1850 output=conus_lulc_1850_reclassMatchLCMAP rules=../LandCover/lulc_boolean_reclass.txt
+	r.out.gdal input=conus_lulc_1850_reclassMatchLCMAP  output=conus_lulc_1850_reclassMatchLCMAP.tif format=GTiff
 
 fi
 
