@@ -1,0 +1,2 @@
+0 thru 1 = NULL
+1 thru 30000 = 1

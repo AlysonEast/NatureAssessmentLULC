@@ -1,0 +1,2 @@
+0 thru 83 = NULL
+84 thru 200 = 1
