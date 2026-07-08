@@ -19,8 +19,8 @@ fi
 
 if [ $RECLASS -eq 1 ]
 then
-	r.reclass input=conus_lulc_1850 output=conus_lulc_1850_reclassMatchLCMAP rules=../LandCover/lulc_boolean_reclass.txt
-	r.out.gdal input=conus_lulc_1850_reclassMatchLCMAP  output=conus_lulc_1850_reclassMatchLCMAP.tif format=GTiff
+	r.reclass input=conus_lulc_1850 output=conus_lulc_1850_reclassMatchLCMAP rules=../LandCover/lulc_boolean_reclass.txt --o
+	r.out.gdal input=conus_lulc_1850_reclassMatchLCMAP  output=conus_lulc_1850_reclassMatchLCMAP.tif format=GTiff --o
 
 fi
 
